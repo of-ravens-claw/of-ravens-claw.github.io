@@ -146,9 +146,11 @@
             if (body.classList.contains('dark')) {
                 body.classList.remove('dark');
                 body.classList.add('light');
+                localStorage.setItem('theme', 'light'); // Store the current theme in localStorage
             } else {
                 body.classList.remove('light');
                 body.classList.add('dark');
+                localStorage.setItem('theme', 'dark'); // Store the current theme in localStorage
             }
         }
 
@@ -157,6 +159,12 @@
             const unixTime = parseInt(timestamp, 16) * 1000 + Date.parse("January 1, 1970");
             const date = new Date(unixTime);
             document.getElementById("output").innerHTML = date.toLocaleString();
+        }
+
+        // Get the current theme from localStorage on page load
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+            document.body.classList.add(theme);
         }
     </script>
 </body>
